@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>61. WordPress Meetup Frankfurt - git</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/league.css">
@@ -24,219 +24,209 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
 				<section>
 					<h1>Einstieg in git</h1>
-					<!--<p><small>(Benjamin Ackermann)</small></p>-->
+					<p><small>(Simon Kraft, Benjamin Ackermann)</small></p>
+				</section>
+
+				<section>
+					<h2>Warum überhaupt git?</h2>
+					<br>
+					<p class="fragment fade-up">Versionsverwaltung</p>
 					<aside class="notes">
-						- nur kurz einen Überblick geben<br>
-						- danach ausprobieren über Repo auf gitlab<br>
-						- wollte mal reveal.js ausprobieren ;-)
+						- Vorgänger CVS, SVN<br>
+						- Unterschiede erläutern
 					</aside>
 				</section>
+
 				<section>
-					<section>
-						<h2>Warum überhaupt git?</h2>
-						<br>
-						<p class="fragment fade-up">Versionsverwaltung</p>
-						<aside class="notes">
-							- Vorgänger CVS, SVN<br>
-							- Unterschiede erläutern
-						</aside>
-					</section>
-					<section>
-						<img src="images/lokale-versionsverwaltung.png" alt="Lokale Versionsverwaltung" width="380" align="right">
-						<br><h2>Lokale Versions-verwaltung</h2>
-						<p style="margin-right: 400px;"><br>z.B. SCCS, RCS</p>
-						<aside class="notes">
-							- nur einmalig auf dem Rechner notwendig<br>
-							- gilt für alle Repos übergreifend
-						</aside>
-					</section>
-					<section>
-						<img src="images/zentrale-versionsverwaltung.png" alt="Zentrale Versionsverwaltung" width="380" align="right">
-						<br><h2>Zentrale Versions-verwaltung</h2>
-						<p style="margin-right: 400px;"><br>z.B. CVS, SVN</p>
-						<aside class="notes">
-							- nur einmalig auf dem Rechner notwendig<br>
-							- gilt für alle Repos übergreifend
-						</aside>
-					</section>
-					<section>
-						<img src="images/verteilte-versionsverwaltung.png" alt="Verteilte Versionsverwaltung" width="380" align="right">
-						<br><h2>Verteilte Versions-verwaltung</h2>
-						<p style="margin-right: 400px;"><br>z.B. Mercurial, Git</p>
-						<aside class="notes">
-							- nur einmalig auf dem Rechner notwendig<br>
-							- gilt für alle Repos übergreifend
-						</aside>
-					</section>
+					<h2>Lokale Versionsverwaltung</h2>
+					<p>z.B. SCCS, RCS</p>
+					<img src="images/lokale-versionsverwaltung.png" alt="Lokale Versionsverwaltung" width="380">
+					<p><small>	(Bild: https://rogerdudler.github.io/git-guide/index.de.html)</small></p>
 				</section>
+
+				<section>
+					<h2>Zentrale Versionsverwaltung</h2>
+					<p>z.B. CVS, SVN</p>
+					<img src="images/zentrale-versionsverwaltung.png" alt="Zentrale Versionsverwaltung" width="380">
+					<p><small>	(Bild: https://rogerdudler.github.io/git-guide/index.de.html)</small></p>
+				</section>
+
+				<section>
+					<h2>Verteilte Versionsverwaltung</h2>
+					<p>z.B. Mercurial, Git</p>
+					<img src="images/verteilte-versionsverwaltung.png" alt="Verteilte Versionsverwaltung" width="300">
+					<p><small>	(Bild: https://rogerdudler.github.io/git-guide/index.de.html)</small></p>
+				</section>
+
 				<section>
 					<img src="images/screenshot-git-download.png" alt="Download git" width="380" align="right">
 					<br><h2>Installation</h2>
-					<p style="margin-right: 400px;"><br>Download:<br>
-						<small>https://git-scm.com/downloads</small></p>
+					<p style="margin-right: 400px;"><br>Download:<br><small>https://git-scm.com/downloads</small></p>
+				</section>
+
+				<section>
+					<h2>Notwendige Konfiguration</h2>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+git config --global user.name "Max Mustermann"
+git config --global user.email max@mustermann.de</code></pre>
+					<p class="fragment fade-up"><small>(Nur einmalig pro Rechner notwendig)</small></p>
 					<aside class="notes">
 						- nur einmalig auf dem Rechner notwendig<br>
 						- gilt für alle Repos übergreifend
 					</aside>
 				</section>
+
 				<section>
-					<section>
-						<h2>Notwendige Konfiguration</h2>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-	git config --global user.name "Max Mustermann"
-	git config --global user.email max@mustermann.de</code></pre>
-						<p class="fragment fade-up"><small>(Nur einmalig pro Rechner notwendig)</small></p>
-						<aside class="notes">
-							- nur einmalig auf dem Rechner notwendig<br>
-							- gilt für alle Repos übergreifend
-						</aside>
-					</section>
-					<section>
-						<h2>Sinnvolle Konfiguration</h2>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-	git config color.ui true
-	git config format.pretty oneline</code></pre>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>git config --global alias.lg "log --color --graph
-                            --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-                            --abbrev-commit"</code></pre>
-						<p class="fragment fade-up"><small>(Nur einmalig pro Rechner notwendig)</small></p>
-						<aside class="notes">
-							- nur einmalig auf dem Rechner notwendig<br>
-							- gilt für alle Repos übergreifend
-						</aside>
-					</section>
+					<h2>Sinnvolle Konfiguration</h2>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+git config color.ui true
+git config format.pretty oneline</code></pre>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>git config --global alias.lg "log --color --graph
+						--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+						--abbrev-commit"</code></pre>
+					<p class="fragment fade-up"><small>(Nur einmalig pro Rechner notwendig)</small></p>
+					<aside class="notes">
+						- nur einmalig auf dem Rechner notwendig<br>
+						- gilt für alle Repos übergreifend
+					</aside>
 				</section>
+
 				<section>
-					<section>
-						<img src="images/stadien.png" alt="Stadien git" width="380" align="right">
-						<h2>Git Workflow</h2>
-						<h3>Drei Stadien</h3>
-						<ul style="margin-right: 400px;">
-							<li>Working directory</li>
-							<li>Staging Area</li>
-							<li>Repository</li>
-						</ul>
-						<aside class="notes">
-							- Working directory: lokales Verzeichnis - "Arbeitskopie"<br>
-							- Staging Area: "Index" - Zwischenstufe<br>
-							- Repository: HEAD
-						</aside>
-					</section>
-					<section>
-						<h2>Git Workflow - drei Stadien</h2>
-						<img src="images/stadien.png" alt="Stadien git" width="700">
-						<aside class="notes">
-							- Working directory: lokales Verzeichnis - "Arbeitskopie"<br>
-							- Staging Area: "Index" - Zwischenstufe<br>
-							- Repository: HEAD
-						</aside>
-					</section>
+					<h2>Git Workflow</h2>
+					<h3>Drei Stadien</h3>
+					<ul>
+						<li>Working directory</li>
+						<li>Staging Area</li>
+						<li>Repository</li>
+					</ul>
+					<aside class="notes">
+						- Working directory: lokales Verzeichnis - "Arbeitskopie"<br>
+						- Staging Area: "Index" - Zwischenstufe<br>
+						- Repository: HEAD
+					</aside>
 				</section>
+
+				<section>
+					<h2>Git Workflow - drei Stadien</h2>
+					<img src="images/stadien.png" alt="Stadien git" width="700">
+					<p><small>	(Bild: https://rogerdudler.github.io/git-guide/index.de.html)</small></p>
+					<aside class="notes">
+						- Working directory: lokales Verzeichnis - "Arbeitskopie"<br>
+						- Staging Area: "Index" - Zwischenstufe<br>
+						- Repository: HEAD
+					</aside>
+				</section>
+
 				<section>
 					<h2>"Status der Dateien"</h2>
 					<img src="images/git-lifecycle-files.png" alt="Dateien in git" width="700">
-					<aside class="notes">
+					<p><small>	(Bild: https://rogerdudler.github.io/git-guide/index.de.html)</small></p>
+				</section>
 
+				<section>
+					<h2>Los geht's...</h2>
+				</section>
+
+				<section>
+					<h3>Neues Repository erstellen</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+git init</code></pre>
+					<aside class="notes">
+						erstelle ein neues Verzeichnis, öffne es und führe<br>
+						git init<br>
+						aus, um ein neues git-Repository anzulegen.
 					</aside>
 				</section>
-				<section>
-					<section>
-						<h2>Los geht's...</h2>
-					</section>
-					<section>
-						<h3>Neues Repository erstellen</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-	git init</code></pre>
-						<aside class="notes">
-							erstelle ein neues Verzeichnis, öffne es und führe<br>
-							git init<br>
-							aus, um ein neues git-Repository anzulegen.
-						</aside>
-					</section>
-					<section>
-						<h3>Repository auschecken</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-	git clone benutzername@host:/pfad/zum/repository</code></pre>
-						<aside class="notes">
-							geht auch lokal mit git clone /pfad/zum/repository
-						</aside>
-					</section>
-					<section>
-						<h3>add & commit</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git add
-							git add *
-							git add .</code></pre>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git commit -m "Commit-Nachricht"</code></pre>
-						<aside class="notes">
-							Nach commit befinden sich die Änderungen im HEAD, aber nicht im entfernten Repository
-						</aside>
-					</section>
-					<section>
-						<h3>Änderungen hochladen</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git push
-							git push origin master</code></pre>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git remote add origin < server ></code></pre>
-						<aside class="notes">
-							Hinzufügen eines Repos zu lokalem Verzeichnis
-						</aside>
-					</section>
-					<section>
-						<h3>Branching</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git checkout -b feature_x
-							git checkout master
-							git branch -d feature_x
-							git push origin < branch > </code></pre>
-						<aside class="notes">
-							- master-Branch ist Standard<br>
-							- Zusammenführen = mergen<br>
-							- Branch erzeugen und dahin wechseln: git checkout -b feature_xy<br>
-							- zurück zu Master: git checkout master<br>
-							- Branch löschen: git branch -d feature_xy<br>
-							- ins Repo hochladen: git push origin feature_xy
-						</aside>
-					</section>
-					<section>
-						<h3>update & merge</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git pull
-							git merge < branch >
-							git add < dateiname >
-							git diff < quell_branch > < ziel_branch ></code></pre>
-						<aside class="notes">
-							- master-Branch ist Standard<br>
-							- andere Branches kann man anlegen und später wieder zusammenführen (mergen)
-						</aside>
-					</section>
-					<section>
-						<h3>Logs anschauen</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git log</code></pre>
-						<aside class="notes">
 
-						</aside>
-					</section>
-					<section>
-						<h3>Änderungen zurücknehmen</h3>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git checkout -- < filename ></code></pre>
-						<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
-							git fetch origin
-							git reset --hard origin/master</code></pre>
-						<aside class="notes">
-							(1) git checkout -- < filename >: Zurücksetzen auf den letzten Stand von HEAD<br>
-							(2) Alle Änderungen zurücknehmen: vom entfernten Repo holen:
-						</aside>
-					</section>
-					<section>
-						<p>Mit freundlicher Unterstützung von:<br><br>https://rogerdudler.github.io/git-guide/index.de.html</p>
-					</section>
+				<section>
+					<h3>Repository auschecken</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+git clone benutzername@host:/pfad/zum/repository</code></pre>
+					<aside class="notes">
+						geht auch lokal mit git clone /pfad/zum/repository
+					</aside>
+				</section>
+
+				<section>
+					<h3>add & commit</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git add
+						git add *
+						git add .</code></pre>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git commit -m "Commit-Nachricht"</code></pre>
+					<aside class="notes">
+						Nach commit befinden sich die Änderungen im HEAD, aber nicht im entfernten Repository
+					</aside>
+				</section>
+
+				<section>
+					<h3>Änderungen hochladen</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git push
+						git push origin master</code></pre>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git remote add origin < server ></code></pre>
+					<aside class="notes">
+						Hinzufügen eines Repos zu lokalem Verzeichnis
+					</aside>
+				</section>
+
+				<section>
+					<h3>Branching</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git checkout -b feature_x
+						git checkout master
+						git branch -d feature_x
+						git push origin < branch > </code></pre>
+					<aside class="notes">
+						- master-Branch ist Standard<br>
+						- Zusammenführen = mergen<br>
+						- Branch erzeugen und dahin wechseln: git checkout -b feature_xy<br>
+						- zurück zu Master: git checkout master<br>
+						- Branch löschen: git branch -d feature_xy<br>
+						- ins Repo hochladen: git push origin feature_xy
+					</aside>
+				</section>
+
+				<section>
+					<h3>update & merge</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git pull
+						git merge < branch >
+						git add < dateiname >
+						git diff < quell_branch > < ziel_branch ></code></pre>
+					<aside class="notes">
+						- master-Branch ist Standard<br>
+						- andere Branches kann man anlegen und später wieder zusammenführen (mergen)
+					</aside>
+				</section>
+
+				<section>
+					<h3>Logs anschauen</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git log</code></pre>
+				</section>
+				<section>
+					<h3>Änderungen zurücknehmen</h3>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git checkout -- < filename ></code></pre>
+					<pre class="fragment fade-up"><code class="hljs" data-trim contenteditable>
+						git fetch origin
+						git reset --hard origin/master</code></pre>
+					<aside class="notes">
+						(1) git checkout -- < filename >: Zurücksetzen auf den letzten Stand von HEAD<br>
+						(2) Alle Änderungen zurücknehmen: vom entfernten Repo holen:
+					</aside>
+				</section>
+
+				<section>
+					<h3>Weitere Quellen</h3>
+					<p>https://rogerdudler.github.io/git-guide/</p>
+					<p>https://try.github.io/</p>
 				</section>
 			</div>
 		</div>
